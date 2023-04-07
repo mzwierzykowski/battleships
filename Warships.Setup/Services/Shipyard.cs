@@ -11,7 +11,7 @@ namespace Warships.Setup.Services
         private readonly IBoardService _boardService;
         private readonly IBuildDirectionGenerator _buildDirectionGenerator;
         
-        public Shipyard(IOptions<FleetConfiguration> fleetBlueprints, IBoardService boardService, IBuildDirectionGenerator buildDirectionGenerator)
+        public Shipyard(IBoardService boardService, IBuildDirectionGenerator buildDirectionGenerator)
         {
             _boardService = boardService;
             _buildDirectionGenerator = buildDirectionGenerator;

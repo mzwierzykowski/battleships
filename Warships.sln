@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warships", "Warships\Warships.csproj", "{B9D79D89-5D4A-4BFC-B38C-63C622400FF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warships.Setup", "Warships.Game\Warships.Setup.csproj", "{7124510B-B32F-4EB3-9E34-66FC9A78DF74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warships.Setup", "Warships.Setup\Warships.Setup.csproj", "{7124510B-B32F-4EB3-9E34-66FC9A78DF74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warships.Setup.Tests", "Warships.Setup.Tests\Warships.Setup.Tests.csproj", "{BE46121C-7502-4574-94E7-ED13D38AA83F}"
 EndProject

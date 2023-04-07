@@ -438,7 +438,7 @@ namespace Warships.Setup.Tests.Services
         }
 
         [Fact]
-        public void DefineNextPoint_Vertical_ShouldDefineNext()
+        internal void DefineNextPoint_Vertical_ShouldDefineNext()
         {
             var testPoint = new Point(0, 0);
             Point? nextPoint = null;
@@ -456,7 +456,7 @@ namespace Warships.Setup.Tests.Services
         [Theory]
         [InlineData(BuildDirection.Horizontal)]
         [InlineData(BuildDirection.Vertical)]
-        public void DefineNextPoint_ShouldReturnNull(BuildDirection buildDirection)
+        internal void DefineNextPoint_ShouldReturnNull(BuildDirection buildDirection)
         {
             var testPoint = new Point(9, 9);
             Point? nextPoint = null;

@@ -1,12 +1,10 @@
-﻿using Microsoft.Extensions.Options;
-using System.Configuration;
-using Warships.Setup.Config;
+﻿using System.Configuration;
 using Warships.Setup.Models;
 using Warships.Setup.Services.Abstract;
 
 namespace Warships.Setup.Services
 {
-    public class Shipyard : IShipyard
+    internal class Shipyard : IShipyard
     {
         private readonly IBoardService _boardService;
         private readonly IBuildDirectionGenerator _buildDirectionGenerator;

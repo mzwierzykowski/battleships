@@ -6,7 +6,7 @@ using Warships.Setup.Services.Abstract;
 
 namespace Warships.Setup.Services
 {
-    public class FleetService : IFleetService
+    internal class FleetService : IFleetService
     {
         private readonly FleetConfiguration _fleetConfiguration;
         private readonly BoardDimension boardDimension = new(10, 10);

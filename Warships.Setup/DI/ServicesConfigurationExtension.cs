@@ -18,6 +18,7 @@ namespace Warships.Setup.DI
             services.AddSingleton<IBoardService, BoardService>();
             services.AddSingleton<IBuildDirectionGenerator, BuildDirectionGenerator>();
             services.AddSingleton<IShipyard, Shipyard>();
+            services.AddSingleton<IFleetService, FleetService>();
             services.AddSingleton<BoardState>();
         }
     }

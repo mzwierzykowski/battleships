@@ -10,7 +10,6 @@ namespace Warships.Game.Models
     {
         public List<Tile> Tiles { get; set; } = new List<Tile>();
         public string Type { get; set; } = string.Empty;
-        public bool IsSunk { get { return Tiles.Where(x => x.State == TileState.Hit).ToList().Count == Tiles.Count; } 
-        }
+        public bool IsSunk { get { return Tiles.Where(x => x.State == TileState.Hit).ToList().Count == Tiles.Count; } }
     }
 }

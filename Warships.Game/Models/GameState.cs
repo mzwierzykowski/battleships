@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Warships.Game.Models
 {
-    internal class GameState
+    public class GameState
     {
-        public List<Tile> Board { get; set; } = new List<Tile>();
+        public List<Point> Board { get; set; } = new List<Point>();
         public List<Ship> Ships { get; set; } = new List<Ship>();
         public List<ShipStats> Stats { get { return RecalculateStats(); } } 
 
@@ -35,15 +35,15 @@ namespace Warships.Game.Models
         }
         public int TotalHits
         {
-            get { return Board.Where(t => t.State == TileState.Hit).ToList().Count; }
+            get { return Board.Where(t => t.State == PointState.Hit).ToList().Count; }
         }
         public int TotalMiss
         {
-            get { return Board.Where(t => t.State == TileState.Miss).ToList().Count; }
+            get { return Board.Where(t => t.State == PointState.Miss).ToList().Count; }
         }
         public int ShotsFired 
         { 
-            get { return Board.Where(t => t.State != TileState.Unknown).ToList().Count; } 
+            get { return Board.Where(t => t.State != PointState.Unknown).ToList().Count; } 
         }
     }
 }

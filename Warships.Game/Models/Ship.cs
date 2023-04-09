@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Warships.Game.Models
 {
-    internal class Ship
+    public class Ship
     {
-        public List<Tile> Tiles { get; set; } = new List<Tile>();
+        public List<Point> Points { get; set; } = new List<Point>();
         public string Type { get; set; } = string.Empty;
-        public bool IsSunk { get { return Tiles.Where(x => x.State == TileState.Hit).ToList().Count == Tiles.Count; } }
+        public bool IsSunk { get { return Points.Where(x => x.State == PointState.Hit).ToList().Count == Points.Count; } }
     }
 }

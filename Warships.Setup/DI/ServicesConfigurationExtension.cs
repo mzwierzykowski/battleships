@@ -11,7 +11,7 @@ namespace Warships.Setup.DI
     [ExcludeFromCodeCoverage]
     public static class ServicesConfigurationExtension
     {
-        public static void AddServices(this IServiceCollection services, IConfiguration configuration)
+        public static void AddSetupServices(this IServiceCollection services, IConfiguration configuration)
         {
             var fleetConfiguration = configuration.GetSection("FleetConfiguration");
             services.Configure<FleetConfiguration>(fleetConfiguration);

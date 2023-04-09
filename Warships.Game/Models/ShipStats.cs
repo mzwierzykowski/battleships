@@ -1,6 +1,6 @@
 ﻿namespace Warships.Game.Models
 {
-    internal class ShipStats
+    public class ShipStats
     {
         public string Type { get; set; } = string.Empty;
         public int TotalCount { get; set; }

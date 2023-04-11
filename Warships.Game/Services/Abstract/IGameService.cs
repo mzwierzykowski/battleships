@@ -5,6 +5,6 @@ namespace Warships.Game.Services.Abstract
     public interface IGameService
     {
         public GameState StartGame();
-        public GameState ShootsFired(string tileId);
+        public GameState ShootsFired(string pointId);
     }
 }

@@ -7,7 +7,7 @@ namespace Warships.Game.Services
 {
     public class GameService : IGameService
     {
-        public readonly GameState GameState = new();
+        public GameState GameState { get; internal set; } = new();
         private readonly IFleetService _fleetService;
         private readonly IBoardGenerator _boardGenerator;
         private readonly IMapper _mapper;

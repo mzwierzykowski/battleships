@@ -1,4 +1,4 @@
-﻿namespace Warships.Setup.Config
+﻿namespace Warships.Configuration
 {
     public class ShipBlueprint
     {

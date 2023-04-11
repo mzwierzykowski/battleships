@@ -1,6 +1,6 @@
 ﻿using Moq;
 using System.Collections;
-using Warships.Setup.Config;
+using Warships.Configuration;
 using Warships.Setup.Services.Abstract;
 
 namespace Warships.Setup.Tests.Services
@@ -15,7 +15,7 @@ namespace Warships.Setup.Tests.Services
             boardGeneratorMock.Setup(x => x.GenerateBoard())
                 .Returns(() =>
                 {
-                    var boardDimension = new BoardDimension(10, 10);
+                    var boardDimension = new BoardDimension() { Height = 10, Width = 10 };
                     var board = new List<Point>();
                     for (int y = 0; y < boardDimension.Height; y++)
                     {

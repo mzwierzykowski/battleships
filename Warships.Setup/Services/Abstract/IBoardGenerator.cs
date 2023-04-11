@@ -2,8 +2,8 @@
 
 namespace Warships.Setup.Services.Abstract
 {
-    public interface IFleetService
+    public interface IBoardGenerator
     {
-        public List<Ship> BuildFleet();
+        public List<Point> GenerateBoard();
     }
 }

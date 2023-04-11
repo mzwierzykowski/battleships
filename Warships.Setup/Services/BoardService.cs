@@ -6,28 +6,21 @@ namespace Warships.Setup.Services
 {
     internal class BoardService : IBoardService
     {
-        private readonly BoardState _boardState;
-        public BoardService(BoardState boardState)
+        internal BoardState BoardState;
+        private readonly IBoardGenerator _boardGenerator;
+        public BoardService(IBoardGenerator boardGenerator)
         {
-            _boardState = boardState;
-        }
-
-        public void GenerateBoard(BoardDimension boardDimension)
-        {
-            _boardState.AvailablePoints = new List<Point>();
-            for (int y = 0; y < boardDimension.Height; y++)
+            _boardGenerator = boardGenerator;
+            BoardState = new BoardState
             {
-                for (int x = 0; x < boardDimension.Width; x++)
-                {
-                    _boardState.AvailablePoints.Add(new Point(x, y));
-                }
-            }
+                AvailablePoints = _boardGenerator.GenerateBoard()
+            };
         }
 
         public Point GetRandomAvaiablePoint()
         {
             var rnd = new Random();
-            var point = _boardState.AvailablePoints[rnd.Next(_boardState.AvailablePoints.Count)];
+            var point = BoardState.AvailablePoints[rnd.Next(BoardState.AvailablePoints.Count)];
             return point;
         }
 
@@ -42,9 +35,9 @@ namespace Warships.Setup.Services
             {
                 for (int x = startX; x <= endX; x++)
                 {
-                    var point = _boardState.AvailablePoints.Where(p => p.X == x && p.Y == y).FirstOrDefault();
+                    var point = BoardState.AvailablePoints.Where(p => p.X == x && p.Y == y).FirstOrDefault();
                     if (point != null)
-                        _boardState.AvailablePoints.Remove(point);
+                        BoardState.AvailablePoints.Remove(point);
                 }
             }
         }
@@ -54,9 +47,9 @@ namespace Warships.Setup.Services
         {
             Point? nextPoint = null;
             if (direction is BuildDirection.Horizontal)
-                nextPoint = _boardState.AvailablePoints.Where(p => p.X == basePoint.X + 1 && p.Y == basePoint.Y).FirstOrDefault();
+                nextPoint = BoardState.AvailablePoints.Where(p => p.X == basePoint.X + 1 && p.Y == basePoint.Y).FirstOrDefault();
             else
-                nextPoint = _boardState.AvailablePoints.Where(p => p.X == basePoint.X && p.Y == basePoint.Y + 1).FirstOrDefault();
+                nextPoint = BoardState.AvailablePoints.Where(p => p.X == basePoint.X && p.Y == basePoint.Y + 1).FirstOrDefault();
             return nextPoint;
         }
     }

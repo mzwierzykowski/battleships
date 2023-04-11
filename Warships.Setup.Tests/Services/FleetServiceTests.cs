@@ -47,7 +47,7 @@ namespace Warships.Setup.Tests.Services
         public void BuildFleet_ConfigurationError_ShouldThrow(FleetConfiguration fleetConfiguration)
         {
             List<Ship> fleet = new();
-            var fleetConfigurationOptions = Options.Create<FleetConfiguration>(fleetConfiguration);
+            var fleetConfigurationOptions = Options.Create(fleetConfiguration);
             var shipyard = new FleetService(fleetConfigurationOptions, _boardServiceMock.Object, _shipyardMock.Object);
             Action action = () => fleet = shipyard.BuildFleet();
 

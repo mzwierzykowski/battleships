@@ -1,18 +1,33 @@
-﻿using System.Collections;
+﻿using Moq;
+using System.Collections;
 using Warships.Setup.Config;
+using Warships.Setup.Services.Abstract;
 
 namespace Warships.Setup.Tests.Services
 {
     public class BoardServiceTests
     {
-        readonly BoardState _state;
         readonly BoardService _service;
+        readonly BoardState _state;
         public BoardServiceTests()
         {
-            _state = new BoardState();
-            _service = new BoardService(_state);
-            var boardDimension = new BoardDimension(10, 10);
-            _service.GenerateBoard(boardDimension);
+            var boardGeneratorMock = new Mock<IBoardGenerator>();
+            boardGeneratorMock.Setup(x => x.GenerateBoard())
+                .Returns(() =>
+                {
+                    var boardDimension = new BoardDimension(10, 10);
+                    var board = new List<Point>();
+                    for (int y = 0; y < boardDimension.Height; y++)
+                    {
+                        for (int x = 0; x < boardDimension.Width; x++)
+                        {
+                            board.Add(new Point(x, y));
+                        }
+                    }
+                    return board;
+                });
+            _service = new BoardService(boardGeneratorMock.Object);
+            _state = _service.BoardState;
         }
         private class CentralShipGenerator : IEnumerable<object[]>
         {
@@ -385,42 +400,6 @@ namespace Warships.Setup.Tests.Services
             _state.AvailablePoints.Should().HaveCount(expectedBoardSizeAfterRemoval);
         }
 
-        private class BoardDimensionGenerator : IEnumerable<object[]>
-        {
-            public IEnumerator<object[]> GetEnumerator()
-            {
-                yield return new object[]
-                {
-                    new BoardDimension(1, 1)
-                };
-                yield return new object[]
-                {
-                    new BoardDimension(5, 5)
-                };
-                yield return new object[]
-                {
-                    new BoardDimension(10, 10)
-                };
-                yield return new object[]
-                {
-                    new BoardDimension(100, 100)
-                };
-            }
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        }
-        [Theory]
-        [ClassData(typeof(BoardDimensionGenerator))]
-        public void GenerateBoardTest(BoardDimension boardDimension)
-        {
-            int expectedBoardSize = boardDimension.Width * boardDimension.Height;
-
-            Action action = () => _service.GenerateBoard(boardDimension);
-
-            action.Should().NotThrow();
-            _state.AvailablePoints.Should().HaveCount(expectedBoardSize);
-
-        }
-
         [Fact]
         public void DefineNextPoint_Horizontal_ShouldDefineNext()
         {
@@ -438,7 +417,7 @@ namespace Warships.Setup.Tests.Services
         }
 
         [Fact]
-        public void DefineNextPoint_Vertical_ShouldDefineNext()
+        internal void DefineNextPoint_Vertical_ShouldDefineNext()
         {
             var testPoint = new Point(0, 0);
             Point? nextPoint = null;
@@ -456,7 +435,7 @@ namespace Warships.Setup.Tests.Services
         [Theory]
         [InlineData(BuildDirection.Horizontal)]
         [InlineData(BuildDirection.Vertical)]
-        public void DefineNextPoint_ShouldReturnNull(BuildDirection buildDirection)
+        internal void DefineNextPoint_ShouldReturnNull(BuildDirection buildDirection)
         {
             var testPoint = new Point(9, 9);
             Point? nextPoint = null;

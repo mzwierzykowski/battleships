@@ -27,11 +27,13 @@ namespace Warships.API.Tests.Validators
         [InlineData("")]
         [InlineData(null)]
         [InlineData("a.b")]
+        [InlineData("1.b")]
         [InlineData("dummy")]
         [InlineData("1_1")]
         [InlineData("9.10")]
         [InlineData("10.9")]
         [InlineData("-1.0")]
+        [InlineData("0.-1")]
         [InlineData("-1.-1")]
         public void IsValid_ShouldBeFalse(string pointId)
         {

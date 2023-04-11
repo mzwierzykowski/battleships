@@ -1,7 +1,7 @@
 ﻿namespace Warships.Setup.Models
 {
-    internal class BoardState
+    public class BoardState
     {
-        internal List<Point> AvailablePoints { get; set; } = new();
+        public List<Point> AvailablePoints { get; set; } = new();
     }
 }

@@ -11,7 +11,7 @@ namespace Warships.Game.Models
     {
         public List<Point> Board { get; set; } = new List<Point>();
         public List<Ship> Ships { get; set; } = new List<Ship>();
-        public List<ShipStats> Stats { get { return RecalculateStats(); } } 
+        public List<ShipStats> ShipStats { get { return RecalculateStats(); } } 
 
         private List<ShipStats> RecalculateStats()
         {
@@ -29,7 +29,7 @@ namespace Warships.Game.Models
             return stats;
         }
 
-        public bool Finished 
+        public bool Isfinished 
         { 
             get { return Ships.Where(s => s.IsSunk).ToList().Count == Ships.Count; } 
         }

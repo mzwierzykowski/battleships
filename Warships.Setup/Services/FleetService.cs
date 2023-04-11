@@ -9,7 +9,6 @@ namespace Warships.Setup.Services
     internal class FleetService : IFleetService
     {
         private readonly FleetConfiguration _fleetConfiguration;
-        private readonly BoardDimension boardDimension = new(10, 10);
         private readonly IBoardService _boardService;
         private readonly IShipyard _shipyard;
         public FleetService(IOptions<FleetConfiguration> fleetBlueprints, IBoardService boardService, IShipyard shipyard)
@@ -24,7 +23,6 @@ namespace Warships.Setup.Services
                 throw new ConfigurationErrorsException(ExceptionMessages.MissingFleetConfiguration);
 
             var fleet = new List<Ship>();
-            _boardService.GenerateBoard(boardDimension);
             foreach (var shipConfig in _fleetConfiguration.Blueprints)
             {
                 for (int i = 0; i < shipConfig.Count; i++)

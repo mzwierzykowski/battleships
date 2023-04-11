@@ -15,11 +15,13 @@ namespace Warships.Setup.DI
         {
             var fleetConfiguration = configuration.GetSection("FleetConfiguration");
             services.Configure<FleetConfiguration>(fleetConfiguration);
+            var boardDimension = configuration.GetSection("BoardDimension");
+            services.Configure<BoardDimension>(boardDimension);
             services.AddSingleton<IBoardService, BoardService>();
             services.AddSingleton<IBuildDirectionGenerator, BuildDirectionGenerator>();
             services.AddSingleton<IShipyard, Shipyard>();
             services.AddSingleton<IFleetService, FleetService>();
-            services.AddSingleton<BoardState>();
+            services.AddSingleton<IBoardGenerator, BoardGenerator>();
         }
     }
 }

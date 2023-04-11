@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warships.Game", "Warships.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warships.Game.Tests", "Warships.Game.Tests\Warships.Game.Tests.csproj", "{645ACB34-AA1F-40ED-B135-7F69C2165699}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warships.API", "Warships.API\Warships.API.csproj", "{48D170D8-B056-4E9A-9660-7C5C40D29294}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warships.API", "Warships.API\Warships.API.csproj", "{48D170D8-B056-4E9A-9660-7C5C40D29294}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warships.Configuration", "Warships.Configuration\Warships.Configuration.csproj", "{C904D927-D38B-4F7D-8915-311A66030C95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warships.Configuration", "Warships.Configuration\Warships.Configuration.csproj", "{C904D927-D38B-4F7D-8915-311A66030C95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warships.API.Tests", "Warships.API.Tests\Warships.API.Tests.csproj", "{9309716B-B0F3-4A6E-A573-67D8451104FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C904D927-D38B-4F7D-8915-311A66030C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C904D927-D38B-4F7D-8915-311A66030C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C904D927-D38B-4F7D-8915-311A66030C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9309716B-B0F3-4A6E-A573-67D8451104FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9309716B-B0F3-4A6E-A573-67D8451104FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9309716B-B0F3-4A6E-A573-67D8451104FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9309716B-B0F3-4A6E-A573-67D8451104FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

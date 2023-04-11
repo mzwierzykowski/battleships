@@ -2,6 +2,6 @@
 {
     public class Request
     {
-        public string PointId { get; set; }
+        public string PointId { get; set; } = string.Empty;
     }
 }

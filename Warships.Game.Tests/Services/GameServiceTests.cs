@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Moq;
 using System.Text.RegularExpressions;
+using Warships.Configuration;
 using Warships.Game.Models.Mapping;
 using Warships.Game.Services;
-using Warships.Setup.Config;
 using Warships.Setup.Services.Abstract;
 
 namespace Warships.Game.Tests.Services
@@ -14,7 +14,7 @@ namespace Warships.Game.Tests.Services
         private readonly Mock<IFleetService> _fleetServiceMock;
         private readonly Mock<IBoardGenerator> _boardGeneratorMock;
         private readonly List<SetupModels.Ship> _fleet;
-        private readonly BoardDimension _BoardDimension = new(10, 10);
+        private readonly BoardDimension _BoardDimension = new() { Height = 10, Width = 10 };
 
         public GameServiceTests()
         {

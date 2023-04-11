@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Configuration;
-using Warships.Setup.Config;
+using Warships.Configuration;
 using Warships.Setup.Models;
 using Warships.Setup.Services.Abstract;
 

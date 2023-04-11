@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Collections;
 using System.Configuration;
-using Warships.Setup.Config;
+using Warships.Configuration;
 
 namespace Warships.Setup.Tests.Services
 {
@@ -25,19 +25,19 @@ namespace Warships.Setup.Tests.Services
             {
                 yield return new object[]
                 {
-                    new BoardDimension(1, 1)
+                    new BoardDimension() { Width = 1, Height = 1 },
                 };
                 yield return new object[]
                 {
-                    new BoardDimension(5, 5)
+                    new BoardDimension() { Width = 5, Height = 5 },
                 };
                 yield return new object[]
                 {
-                    new BoardDimension(10, 10)
+                    new BoardDimension() { Width = 10, Height = 10 },
                 };
                 yield return new object[]
                 {
-                    new BoardDimension(100, 100)
+                    new BoardDimension() { Width = 100, Height = 100 }
                 };
             }
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

@@ -1,5 +1,4 @@
-﻿using Warships.Setup.Config;
-using Warships.Setup.Models;
+﻿using Warships.Setup.Models;
 using Warships.Setup.Services.Abstract;
 
 namespace Warships.Setup.Services

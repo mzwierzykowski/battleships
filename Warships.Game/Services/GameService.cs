@@ -36,6 +36,7 @@ namespace Warships.Game.Services
 
         public GameState StartGame()
         {
+            GameState = new GameState();
             var shipsSetup = _fleetService.BuildFleet();
             var ships = _mapper.Map<List<Ship>>(shipsSetup);
             var boardSetup = _boardGenerator.GenerateBoard();

@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System.Collections;
 using System.Configuration;
+using Warships.Configuration;
 using Warships.Setup.Services.Abstract;
 
 namespace Warships.Setup.Tests.Services

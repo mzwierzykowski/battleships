@@ -1,7 +1,9 @@
-﻿using Warships.Game.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+using Warships.Game.Models;
 
 namespace Warships.API.Models
 {
+    [ExcludeFromCodeCoverage]
     public class GameState
     {
         public List<Point> Board { get; set; } = new List<Point>();

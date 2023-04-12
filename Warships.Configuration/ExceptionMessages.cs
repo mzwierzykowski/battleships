@@ -1,4 +1,4 @@
-﻿namespace Warships.Setup.Models
+﻿namespace Warships.Configuration
 {
     public static class ExceptionMessages
     {

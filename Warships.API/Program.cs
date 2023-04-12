@@ -1,4 +1,5 @@
 using AutoMapper;
+using System.Diagnostics.CodeAnalysis;
 using Warships.API.Models;
 using Warships.API.Models.Mapping;
 using Warships.API.Validators;
@@ -35,3 +36,6 @@ app.MapPost("/game", (Request request, IRequestValidator requestValidator, IMapp
 });
 
 app.Run();
+
+[ExcludeFromCodeCoverage]
+public partial class Program { }

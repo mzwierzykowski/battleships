@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using Warships.Configuration;
 using Warships.Setup.Models;
 using Warships.Setup.Services.Abstract;
 

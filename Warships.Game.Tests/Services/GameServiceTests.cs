@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Options;
 using Moq;
 using System.Text.RegularExpressions;
 using Warships.Configuration;
@@ -75,7 +76,8 @@ namespace Warships.Game.Tests.Services
         [Fact]
         public void StartGame_ShouldReturnValidGameState()
         {
-            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper);
+            var boardDimensionOptions = Options.Create(_BoardDimension);
+            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper, boardDimensionOptions);
             int expectedGameBoardSize = _BoardDimension.Width * _BoardDimension.Height;
             int expectedSunkShips = 0;
             int expectedMissCounter = 0;
@@ -87,9 +89,9 @@ namespace Warships.Game.Tests.Services
 
             action.Should().NotThrow();
             gameService.GameState.Should().NotBeNull();
-            gameService.GameState.Board.Should().NotBeEmpty();
-            gameService.GameState.Board.Should().BeOfType<List<GameModels.Point>>();
-            gameService.GameState.Board.Should().HaveCount(expectedGameBoardSize);
+            gameService.GameState.Board.Points.Should().NotBeEmpty();
+            gameService.GameState.Board.Points.Should().BeOfType<List<GameModels.Point>>();
+            gameService.GameState.Board.Points.Should().HaveCount(expectedGameBoardSize);
 
             gameService.GameState.Ships.Should().NotBeEmpty();
             gameService.GameState.Ships.Should().BeOfType<List<GameModels.Ship>>();
@@ -117,7 +119,8 @@ namespace Warships.Game.Tests.Services
         [Fact]
         public void ShotsFired_Miss_ShouldAdjustGameState()
         {
-            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper);
+            var boardDimensionOptions = Options.Create(_BoardDimension);
+            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper, boardDimensionOptions);
             var board = MockBoard();
             var gameboard = _mapper.Map<List<GameModels.Point>>(board);
             int expectedMissCounter = 1;
@@ -136,7 +139,7 @@ namespace Warships.Game.Tests.Services
             };
             gameService.GameState = new Models.GameState()
             {
-                Board = gameboard,
+                Board = new Models.Board() { Points = gameboard, Dimension = _BoardDimension },
                 Ships = new List<GameModels.Ship> { ship }
             };
 
@@ -157,7 +160,8 @@ namespace Warships.Game.Tests.Services
         [Fact]
         public void ShotsFired_Hit_ShouldAdjustGameState()
         {
-            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper);
+            var boardDimensionOptions = Options.Create(_BoardDimension);
+            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper, boardDimensionOptions);
             var board = MockBoard();
             var gameboard = _mapper.Map<List<GameModels.Point>>(board);
             int expectedMissCounter = 0;
@@ -176,7 +180,7 @@ namespace Warships.Game.Tests.Services
             };
             gameService.GameState = new Models.GameState()
             {
-                Board = gameboard,
+                Board = new Models.Board() { Points = gameboard, Dimension = _BoardDimension },
                 Ships = new List<GameModels.Ship> { ship }
             };
 
@@ -197,7 +201,8 @@ namespace Warships.Game.Tests.Services
         [Fact]
         public void ShotsFired_Hit_ShouldSunkShip()
         {
-            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper);
+            var boardDimensionOptions = Options.Create(_BoardDimension);
+            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper, boardDimensionOptions);
             var board = MockBoard();
             var gameboard = _mapper.Map<List<GameModels.Point>>(board);
             string assertShipName = "Destroyer";
@@ -229,7 +234,7 @@ namespace Warships.Game.Tests.Services
              };
             gameService.GameState = new Models.GameState()
             {
-                Board = gameboard,
+                Board = new Models.Board() { Points = gameboard, Dimension = _BoardDimension },
                 Ships = ships,
             };
 
@@ -253,7 +258,8 @@ namespace Warships.Game.Tests.Services
         [Fact]
         public void ShotsFired_Hit_ShouldFinishGame()
         {
-            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper);
+            var boardDimensionOptions = Options.Create(_BoardDimension);
+            var gameService = new GameService(_fleetServiceMock.Object, _boardGeneratorMock.Object, _mapper, boardDimensionOptions);
             var board = MockBoard();
             var gameboard = _mapper.Map<List<GameModels.Point>>(board);
             string assertShipName = "Destroyer";
@@ -274,7 +280,7 @@ namespace Warships.Game.Tests.Services
              };
             gameService.GameState = new Models.GameState()
             {
-                Board = gameboard,
+                Board = new Models.Board() { Points = gameboard, Dimension = _BoardDimension },
                 Ships = ships,
             };
 

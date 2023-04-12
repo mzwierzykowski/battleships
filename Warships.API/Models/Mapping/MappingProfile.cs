@@ -8,7 +8,14 @@ namespace Warships.API.Models.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Game.Models.GameState, GameState>();
+            CreateMap<GameState, Warships.Game.Models.GameState>().ReverseMap()
+                .ForPath(d => d.Stats, o => o.MapFrom(s => new Stats()
+                {
+                    ShipStats = s.ShipStats,
+                    TotalHits = s.TotalHits,
+                    TotalMiss = s.TotalMiss,
+                    ShotsFired = s.ShotsFired,
+                }));
         }
     }
 }

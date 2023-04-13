@@ -12,6 +12,6 @@ services:
     build: ./warships-client
     container_name: warships_client
     ports:
-     - '3000:3000'
+      - '3000:3000'
     stdin_open: true
     tty: true

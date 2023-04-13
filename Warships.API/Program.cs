@@ -14,11 +14,18 @@ builder.Services.Configure<FleetConfiguration>(builder.Configuration.GetSection(
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddSingleton<IRequestValidator, RequestValidator>();
 builder.Services.AddGameServices();
+builder.Services.AddCors();
 
 var app = builder.Build();
+app.UseCors(builder =>
+builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
-app.MapGet("/game", (IGameService gameService) => {
-    var result = gameService.StartGame();
+app.MapGet("/game", (IMapper mapper, IGameService gameService) => {
+    var gameState = gameService.StartGame();
+    var result = mapper.Map<GameState>(gameState);
     return result;
 });
 

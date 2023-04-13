@@ -22,6 +22,7 @@ namespace Warships.Setup.Services
             if (_fleetConfiguration?.Blueprints == null || !_fleetConfiguration.Blueprints.Any())
                 throw new ConfigurationErrorsException(ExceptionMessages.MissingFleetConfiguration);
 
+            _boardService.ResetBoardState();
             var fleet = new List<Ship>();
             foreach (var shipConfig in _fleetConfiguration.Blueprints)
             {

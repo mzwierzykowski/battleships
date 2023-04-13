@@ -5,16 +5,15 @@ namespace Warships.Setup.Services
 {
     internal class BoardService : IBoardService
     {
-        internal BoardState BoardState;
+        internal BoardState BoardState = new();
         private readonly IBoardGenerator _boardGenerator;
         public BoardService(IBoardGenerator boardGenerator)
         {
             _boardGenerator = boardGenerator;
-            BoardState = new BoardState
-            {
-                AvailablePoints = _boardGenerator.GenerateBoard()
-            };
+            ResetBoardState();
         }
+
+
 
         public Point GetRandomAvaiablePoint()
         {
@@ -50,6 +49,14 @@ namespace Warships.Setup.Services
             else
                 nextPoint = BoardState.AvailablePoints.Where(p => p.X == basePoint.X && p.Y == basePoint.Y + 1).FirstOrDefault();
             return nextPoint;
+        }
+
+        public void ResetBoardState()
+        {
+            BoardState = new BoardState
+            {
+                AvailablePoints = _boardGenerator.GenerateBoard()
+            };
         }
     }
 }

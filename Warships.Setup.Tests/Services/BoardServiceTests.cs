@@ -9,22 +9,28 @@ namespace Warships.Setup.Tests.Services
     {
         readonly BoardService _service;
         readonly BoardState _state;
+        private int _boardGeneratorCallCount = 0;
+        private readonly BoardDimension _boardDimension = new() { Height = 10, Width = 10 };
         public BoardServiceTests()
         {
             var boardGeneratorMock = new Mock<IBoardGenerator>();
             boardGeneratorMock.Setup(x => x.GenerateBoard())
                 .Returns(() =>
                 {
-                    var boardDimension = new BoardDimension() { Height = 10, Width = 10 };
+                    
                     var board = new List<Point>();
-                    for (int y = 0; y < boardDimension.Height; y++)
+                    for (int y = 0; y < _boardDimension.Height; y++)
                     {
-                        for (int x = 0; x < boardDimension.Width; x++)
+                        for (int x = 0; x < _boardDimension.Width; x++)
                         {
                             board.Add(new Point(x, y));
                         }
                     }
                     return board;
+                })
+                .Callback(() =>
+                {
+                    _boardGeneratorCallCount++;
                 });
             _service = new BoardService(boardGeneratorMock.Object);
             _state = _service.BoardState;
@@ -455,6 +461,27 @@ namespace Warships.Setup.Tests.Services
 
             action.Should().NotThrow();
             point.Should().NotBeNull();
+
+        }
+
+        [Fact]
+        public void ResetBoardState_ShouldPrepareNewBoard()
+        {
+            _boardGeneratorCallCount = 0;
+            int expectedAvailablePointsCount = _boardDimension.Width * _boardDimension.Height;
+            _service.BoardState = new BoardState()
+            {
+                AvailablePoints = new List<Point>()
+                {
+                    new Point(1,1)
+                }
+            };
+            Action action = () => _service.ResetBoardState();
+            action.Should().NotThrow();
+            _service.BoardState.Should().NotBeNull();
+            _service.BoardState?.AvailablePoints.Should().NotBeNullOrEmpty();
+            _service.BoardState?.AvailablePoints.Should().HaveCount(expectedAvailablePointsCount);
+
 
         }
     }

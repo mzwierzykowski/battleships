@@ -1,0 +1,27 @@
+.components {
+    padding-left: 20px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.board-component {
+    padding-top: 20px;
+}
+
+.panel {
+    padding-top: 20px;
+    margin-left: 20px;
+}
+
+.new-game-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f7ffff;;
+    border: 1px solid;
+}
+
+.button-text {
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: large;
+}

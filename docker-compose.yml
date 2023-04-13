@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  warships.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    build: ./warships-api
+    container_name: warships_api
+    ports:
+      - '5248:80'
+  warships.client:
+    build: ./warships-client
+    container_name: warships_client
+    ports:
+     - '3000:3000'
+    stdin_open: true
+    tty: true

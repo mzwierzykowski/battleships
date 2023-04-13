@@ -468,6 +468,7 @@ namespace Warships.Setup.Tests.Services
         public void ResetBoardState_ShouldPrepareNewBoard()
         {
             _boardGeneratorCallCount = 0;
+            int expectedCallbackCount = 1;
             int expectedAvailablePointsCount = _boardDimension.Width * _boardDimension.Height;
             _service.BoardState = new BoardState()
             {
@@ -481,6 +482,7 @@ namespace Warships.Setup.Tests.Services
             _service.BoardState.Should().NotBeNull();
             _service.BoardState?.AvailablePoints.Should().NotBeNullOrEmpty();
             _service.BoardState?.AvailablePoints.Should().HaveCount(expectedAvailablePointsCount);
+            _boardGeneratorCallCount.Should().Be(expectedCallbackCount);
 
 
         }

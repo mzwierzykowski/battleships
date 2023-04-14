@@ -1,17 +1,17 @@
 # Warships
+This repository contains game that enables user to play single sided game against ships placed by the computer.
 
 # Introduction
-This repository contains game that enables user to play single sided Warships game against ships placed by the computer.
 Repository contains two projects:
 * warships-api is a backend application written in .NET 7 responsible for generating the board and tracking current game state,
 * warships-client is web application written in React that allows user to interact with the game and is responsible for communication with backend server.
 
-Board size and enemy fleet composition are driven by configuration 
-Default values are 10x10 board and fleet containing:
+Board size and enemy fleet composition are driven by configuration. 
+The default values are 10x10 board and fleet containing:
 * Battleship (size: 5 tiles, count: 1),
 * Destroyer (size: 4 tiles, count: 2),
 
-Which are reflected in appsettings.json sections of Warships.API project:
+Which are reflected in below sections of appsettings.json in Warships.API project:
 ```json
   "BoardDimension": {
     "Width": 10,
@@ -32,10 +32,10 @@ Which are reflected in appsettings.json sections of Warships.API project:
     ]
   }
 ```
-By adding more objects to 'Blueprints' array we can introduce more types of ships to the game or change the existing ones.
-Board size can also be adjusted and (hopefully :) ) should be reflected accordingly on the warships-client frontend application.
+By adding more objects to 'Blueprints' array one can introduce more types of ships to the game or change the existing ones.
+Board size can also be changed and (hopefully :) ) should be reflected accordingly on the warships-client frontend application.
 
-Warships.sln also contains couple Unit tests projects covering entire application logic.
+Backend solution file also contains unit tests projects in xUnit framework covering entire application logic.
 
 # Running the game
 There are two ways of running the game after clonning repository.

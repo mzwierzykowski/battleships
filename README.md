@@ -1,5 +1,5 @@
 # Warships
-This repository contains game that enables user to play single sided game against ships placed by the computer.
+This repository contains implementation of simplified version of classic Warships game, that enables user to sink ships placed randomly on the board by the application algorithm.
 
 # Introduction
 Repository contains two projects:

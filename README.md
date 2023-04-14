@@ -63,7 +63,7 @@ Prerequisites:
 * .NET 7 SDK
 * nodejs v16.14.2
 
-### 1. Starting backend.
+### 1. Starting backend
 After clonning the repository open terminal in the main repository folder and navigate to:
 ```
 cd warships-api/Warships.API
